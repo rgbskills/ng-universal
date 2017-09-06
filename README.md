@@ -311,7 +311,27 @@ module.exports = function (options, webpackOptions) {
 
 This contains all the configurations of webpack - will add more info later
 
+# For LESS support
 
+In your components ts file add `styles: [ require('./home.component.less') ],`
+It should look something like this:
+
+```javascript
+@Component({
+   selector: 'app-home',
+   templateUrl: './home.component.html',
+   styles: [ require('./home.component.less') ],
+ })
+ ```
+ Now open `webpack/webpack.common.js`
+ and add this to your module rules
+```javascript
+{
+    test: /\.less$/,
+    exclude: /node_modules/,
+    loader: 'raw-loader!less-loader'
+}
+```
 
 ## TODO
 
